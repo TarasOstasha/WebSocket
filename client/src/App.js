@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getMessagesThunk } from './store/slices/messagesSlice';
 import './App.css';
 import { ws } from './api';
+import MessageForm from './components/MessageForm';
+
 
 function App ({ messages, isFetching, error, limit, get }) {
   useEffect(() => {
@@ -31,6 +33,8 @@ function App ({ messages, isFetching, error, limit, get }) {
 
   return (
     <>
+      {/* <MessageForm /> */}
+   
       {error && <div style={{ color: 'red' }}>ERROR!!!</div>}
       {isFetching && <div>Messages is loading. Please, wait...</div>}
       {!isFetching && !error && (
@@ -43,14 +47,15 @@ function App ({ messages, isFetching, error, limit, get }) {
         </ol>
       )}
       <hr />
-      <Formik initialValues={{ body: '' }} onSubmit={addMessage}>
+      <MessageForm initialValues={{ body: '' }} onSubmit={addMessage} />
+      {/* <Formik initialValues={{ body: '' }} onSubmit={addMessage}>
         {formikProps => (
           <Form>
             <Field name='body'></Field>
             <button type='submit'>Send</button>
           </Form>
         )}
-      </Formik>
+      </Formik> */}
     </>
   );
 }
