@@ -1,18 +1,14 @@
 import { Formik, Form, Field } from 'formik';
+import { ws } from '../../api';
 
-function MessageForm({ initialValues, onSubmit }) {
-    // const addMessage = (values, formikBag) => {
-    //     ws.createMessage(values);
-    //     formikBag.resetForm();
-    // };
-    // const deleteMessage = (id) => {
-    //     ws.removeMessage(id)
-    //     console.log(id);
-    // }
-
+function MessageForm({ initialValues }) {
+    const addMessage = (values, formikBag) => {
+        ws.createMessage(values);
+        formikBag.resetForm();
+    };
     return (
         <div>
-            <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            <Formik initialValues={initialValues} onSubmit={addMessage}>
                 {formikProps => (
                 <Form>
                     <Field name='body'></Field>
